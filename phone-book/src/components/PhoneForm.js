@@ -6,14 +6,15 @@ class PhoneForm extends Component {
     name: '',
     phone: ''
   }
-  handleChange = (e) => {
+  handleChangeOnForm = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
-  handleSubmit = (e) => {
+  handleSubmitOnForm = (e) => {
     e.preventDefault();
-    // 현재 상태를 
+    // 입력된 현재 상태를 부모 컴포넌트로 전달하는 수단
+    // <PhoneForm onEnroll={this.handleCreateOnApp} /> 코드를 통해 props 정의?
     this.props.onEnroll(this.state);
     // 입력 폼 초기화
     this.setState({
@@ -23,19 +24,23 @@ class PhoneForm extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmitOnForm}>
         <input
           placeholder="Name"
           value={this.state.name}
-          onChange={this.handleChange}
+          onChange={this.handleChangeOnForm}
           name="name"
         />
         <input
           placeholder="Phone"
           value={this.state.phone}
-          onChange={this.handleChange}
+          onChange={this.handleChangeOnForm}
           name="phone"
         />
+
+        <p>this.state.name: {this.state.name ? this.state.name : 'empty'}</p>
+        <p>this.state.phone: {this.state.phone ? this.state.phone: 'empty'}</p>
+
         <button type="submit">Register</button>
       </form>
     )
