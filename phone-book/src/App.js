@@ -72,17 +72,22 @@ class App extends Component {
     });
   }
 
+  // 컴포넌트 요소의 속성으로 설정하면
+  // ex) <PhoneForm onCreateForm ... />
+  // 그 컴포넌트에서 this.props로 사용할 수 있다.
+  // ex) const { onCreateForm } = this.props;
+  // 복습하면 props는 자식 컴포넌트에서 변경할 수 없다.
   render() {
     const { information } = this.state;
     return (
       <div>
         <PhoneForm
-          onEnroll={this.handleCreateOnApp}
+          onCreateForm={this.handleCreateOnApp}
         />
         <PhoneInfoList
           dataInfoList={this.state.information}
-          onRemoveInfoList={this.handleRemove}
-          onUpdateInfoList={this.handleUpdate}
+          onRemoveInfoList={this.handleRemoveOnApp}
+          onUpdateInfoList={this.handleUpdateOnApp}
         />
       </div>
     )

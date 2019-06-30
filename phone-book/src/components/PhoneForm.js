@@ -15,7 +15,7 @@ class PhoneForm extends Component {
     e.preventDefault();
     // 입력된 현재 상태를 부모 컴포넌트로 전달하는 수단
     // <PhoneForm onEnroll={this.handleCreateOnApp} /> 코드를 통해 props 정의?
-    this.props.onEnroll(this.state);
+    this.props.onCreateForm(this.state);
     // 입력 폼 초기화
     this.setState({
       name: '',

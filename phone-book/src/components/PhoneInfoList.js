@@ -19,9 +19,9 @@ class PhoneInfoList extends Component {
 
     // App에서 PhoneInfoList 컴포넌트를 사용할 때
     // <PhoneInfoList> 요소에 onRemove 속성이 없으면 다음 코드가 실행된다.
-    onRemove: () => console.warn('onRemove is not defined.'),
+    onRemoveInfoList: () => console.warn('onRemove is not defined.'),
     // onUpdate도 마찬가지다.
-    onUpdate: () => console.warn('onUpdate is not defiend.')
+    onUpdateInfoList: () => console.warn('onUpdate is not defiend.')
   }
 
   // PhoneInfo 객체 속성의 key 값 중요! 언제가 고유(unique)해야 한다.
@@ -71,15 +71,15 @@ class PhoneInfoList extends Component {
     */
 
 
-    const { dataInfoList, onRemove, onUpdate } = this.props;
+    const { dataInfoList, onRemoveInfoList, onUpdateInfoList } = this.props;
 
     const list = dataInfoList.map(
       info => (
         <PhoneInfo
           key={info.id}
           info={info}
-          onRemove={onRemove}
-          onUpdate={onUpdate}
+          onRemoveInfo={onRemoveInfoList}
+          onUpdateInfo={onUpdateInfoList}
         />
       )
     );

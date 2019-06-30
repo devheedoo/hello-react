@@ -19,9 +19,9 @@ class PhoneInfo extends Component {
   }
   */
 
-  handleRemove = () => {
-    const { info, onRemove } = this.props;
-    onRemove(info.id);
+  handleRemoveOnInfo = () => {
+    const { info, onRemoveInfo } = this.props;
+    onRemoveInfo(info.id);
   }
 
   render() {
@@ -41,7 +41,7 @@ class PhoneInfo extends Component {
         <div>{id}</div>
         <div><b>{name}</b></div>
         <div>{phone}</div>
-        <button onClick={this.handleRemove}>Remove</button>
+        <button onClick={this.handleRemoveOnInfo}>Remove</button>
       </div>
     )
   }
