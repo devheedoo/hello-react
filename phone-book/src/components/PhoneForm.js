@@ -6,11 +6,13 @@ class PhoneForm extends Component {
     name: '',
     phone: ''
   }
+  
   handleChangeOnForm = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
+  
   handleSubmitOnForm = (e) => {
     e.preventDefault();
     // 입력된 현재 상태를 부모 컴포넌트로 전달하는 수단
@@ -22,6 +24,7 @@ class PhoneForm extends Component {
       phone: ''
     });
   }
+
   render() {
     return (
       <form onSubmit={this.handleSubmitOnForm}>

@@ -66,7 +66,9 @@ class App extends Component {
     this.setState({
       information: information.map(
         info => id === info.id
+          // 기존 info 내용을 다 저장한 후, data도 덮어씌운다.
           ? { ...info, ...data }
+          // 그대로 유지한다.
           : info
       )
     });
@@ -85,7 +87,7 @@ class App extends Component {
           onCreateForm={this.handleCreateOnApp}
         />
         <PhoneInfoList
-          dataInfoList={this.state.information}
+          dataInfoList={information}
           onRemoveInfoList={this.handleRemoveOnApp}
           onUpdateInfoList={this.handleUpdateOnApp}
         />
