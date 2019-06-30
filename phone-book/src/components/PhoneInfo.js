@@ -49,6 +49,7 @@ class PhoneInfo extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate on PhoneInfo')
     const { info, onUpdateInfo } = this.props;
     // editing: false > true 변경 시
     if (!prevState.editing && this.state.editing) {
@@ -68,6 +69,7 @@ class PhoneInfo extends Component {
   // 성능 최적화
   // 항상 모든 Info를 렌더링하다가 이제 추가/수정한 Info만 렌더링한다.
   // 그런데 Edit 누르면 왜 렌더링이 2번 될까?
+  // > componentDidUpdate()에서 state를 변경하기 때문이다.
   shouldComponentUpdate(nextProps, nextState) {
     if (!this.state.editing
         && !nextState.editing
