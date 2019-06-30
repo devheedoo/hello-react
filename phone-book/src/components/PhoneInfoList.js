@@ -24,6 +24,23 @@ class PhoneInfoList extends Component {
     onUpdateInfoList: () => console.warn('onUpdate is not defiend.')
   }
 
+  // 성능 최적화
+  // shouldComponentUpdate() 반환값이 true일 때만 컴포넌트가 업데이트된다.
+  // 컴포넌트가 업데이트돼야 렌더링도 일어난다.
+  // 즉 아래처럼 작성하면 props가 변하지 않으면 업데이트 안 일어나고 렌더링도 안 일어난다.
+  // 이렇게 전후 상태를 비교하려면 불변성을 지켜줘야 한다.
+  // 비교할 객체를 유지하면서 변경 후에는 새 객체를 만드는 것이다.
+  // push, splice, unshift, pop 대신 concat, slice, map, filter 사용
+  // 기존 객체를 그대로 두고 새 객체를 만들어서 내용을 복사해서 사용한다.
+  // ex) information: information.map(
+  //                    info => id === info.id
+  //                      ? { ...info, ...data }
+  //                      : info
+  //                  )
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.dataInfoList !== this.props.dataInfoList;
+  }
+
   // PhoneInfo 객체 속성의 key 값 중요! 언제가 고유(unique)해야 한다.
   render() {
 
@@ -70,6 +87,7 @@ class PhoneInfoList extends Component {
       }
     */
 
+    console.log('Render PhoneInfoList...')
 
     const { dataInfoList, onRemoveInfoList, onUpdateInfoList } = this.props;
 

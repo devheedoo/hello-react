@@ -19,7 +19,8 @@ class App extends Component {
         name: 'Tony Stark',
         phone: '010-1111-1111'
       }
-    ]
+    ],
+    keyword: ''
   };
 
   handleCreateOnApp = (data) => {
@@ -74,20 +75,42 @@ class App extends Component {
     });
   }
 
+  // 중요: 컴포넌트 state가 업데이트되면 리렌더링이 발생하는데,
+  // 부모 컴포넌트가 리렌더링되면 자식 컴포넌트도 리렌더링된다.
+  handleChangeOnAppKeyword = (e) => {
+    this.setState({
+      keyword: e.target.value
+    });
+  }
+
   // 컴포넌트 요소의 속성으로 설정하면
   // ex) <PhoneForm onCreateForm ... />
   // 그 컴포넌트에서 this.props로 사용할 수 있다.
   // ex) const { onCreateForm } = this.props;
   // 복습하면 props는 자식 컴포넌트에서 변경할 수 없다.
   render() {
-    const { information } = this.state;
+    const { information, keyword } = this.state;
+
+    const searchResult = information.filter(
+      // TODO: 대소문자 구분하지 않도록
+      info => info.name.indexOf(keyword) !== -1
+    );
+
     return (
       <div>
         <PhoneForm
           onCreateForm={this.handleCreateOnApp}
         />
+        <p>
+          <input
+            placeholder="Search ..."
+            name="keyword"
+            value={keyword}
+            onChange={this.handleChangeOnAppKeyword}
+          />
+        </p>
         <PhoneInfoList
-          dataInfoList={information}
+          dataInfoList={searchResult}
           onRemoveInfoList={this.handleRemoveOnApp}
           onUpdateInfoList={this.handleUpdateOnApp}
         />

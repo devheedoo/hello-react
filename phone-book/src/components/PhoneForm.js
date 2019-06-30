@@ -41,8 +41,8 @@ class PhoneForm extends Component {
           name="phone"
         />
 
-        <p>this.state.name: {this.state.name ? this.state.name : 'empty'}</p>
-        <p>this.state.phone: {this.state.phone ? this.state.phone: 'empty'}</p>
+        {/* <p>this.state.name: {this.state.name ? this.state.name : 'empty'}</p>
+        <p>this.state.phone: {this.state.phone ? this.state.phone: 'empty'}</p> */}
 
         <button type="submit">Register</button>
       </form>

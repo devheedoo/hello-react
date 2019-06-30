@@ -65,7 +65,21 @@ class PhoneInfo extends Component {
     }
   }
 
+  // 성능 최적화
+  // 항상 모든 Info를 렌더링하다가 이제 추가/수정한 Info만 렌더링한다.
+  // 그런데 Edit 누르면 왜 렌더링이 2번 될까?
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!this.state.editing
+        && !nextState.editing
+        && nextProps.info === this.props.info) {
+      return false;
+    }
+    return true;
+  }
+
   render() {
+    console.log('Render PhoneInfo ' + this.props.info.id);
+
     // 연락처 카드 요소 CSS
     const style= {
       border : '1px solid black',
